@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What the State Pays — UK Benefits Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1a18;--paper:#f5f0e8;--cream:#e8e0cc;
+  --green:#2d5016;--green-mid:#4a7c2a;--green-light:#d4e8c2;--green-faint:#edf5e4;
+  --blue:#1d4f7c;--blue-light:#dce8f5;
+  --amber:#7a5200;--amber-light:#fdf3d8;
+  --red:#8b1a1a;--red-light:#f5e4e4;
+  --purple:#6b4c9a;--purple-light:#f0ebf8;
+  --rule:#b8a888;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:'Source Sans 3',sans-serif;font-size:14px;line-height:1.55;}
+
+/* HEADER */
+header{background:var(--green);color:var(--paper);padding:28px 20px 22px;border-bottom:4px solid var(--green-mid);position:relative;overflow:hidden;}
+header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-45deg,transparent,transparent 8px,rgba(255,255,255,.03) 8px,rgba(255,255,255,.03) 9px);}
+.header-inner{max-width:900px;margin:0 auto;position:relative;}
+.form-ref{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,240,232,.5);margin-bottom:6px;}
+header h1{font-family:'Libre Baskerville',serif;font-size:clamp(20px,4vw,32px);font-weight:700;line-height:1.15;color:var(--paper);margin-bottom:8px;}
+header h1 em{font-style:italic;color:var(--green-light);}
+.header-sub{font-size:13px;color:rgba(245,240,232,.75);max-width:560px;line-height:1.55;border-left:2px solid var(--green-mid);padding-left:12px;}
+
+/* MAIN LAYOUT */
+.page{max-width:900px;margin:0 auto;padding:0 16px 60px;}
+
+/* SECTION TITLES */
+.section-title{font-family:'Libre Baskerville',serif;font-size:18px;font-weight:700;color:var(--green);border-bottom:2px solid var(--rule);padding-bottom:8px;margin:28px 0 14px;}
+
+/* HOUSEHOLD SELECTOR */
+.selector-wrap{background:white;border:1px solid var(--cream);border-left:4px solid var(--green);padding:16px 18px;margin-top:20px;}
+.selector-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--green);margin-bottom:8px;display:block;}
+.hh-select{font-family:'Source Sans 3',sans-serif;font-size:14px;padding:8px 12px;border:1px solid var(--rule);border-bottom:2px solid var(--green);background:white;color:var(--ink);width:100%;outline:none;cursor:pointer;}
+
+/* PROFILE PANEL */
+.profile-panel{margin-top:16px;}
+.profile-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.profile-icon{font-size:32px;line-height:1;}
+.profile-name{font-family:'Libre Baskerville',serif;font-size:17px;font-weight:700;color:var(--ink);}
+.profile-desc{font-size:12px;color:#666;margin-top:2px;font-style:italic;}
+.profile-narrative{font-size:13px;color:#333;line-height:1.65;border-left:2px solid var(--cream);padding-left:12px;margin-bottom:14px;font-style:italic;}
+.housing-note{background:var(--blue-light);border-left:3px solid var(--blue);padding:7px 10px;font-size:12px;color:var(--blue);line-height:1.4;margin-bottom:12px;}
+
+/* THREE-COL BREAKDOWN */
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--cream);border:1px solid var(--cream);margin-bottom:12px;}
+@media(max-width:560px){.three-col{grid-template-columns:1fr;}}
+.col-panel{background:white;padding:11px 12px;}
+.col-heading{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px;padding-bottom:5px;border-bottom:2px solid;display:flex;justify-content:space-between;align-items:baseline;}
+.col-heading .col-total{font-family:'Libre Baskerville',serif;font-size:13px;font-weight:700;}
+.col-cash .col-heading{color:var(--green);border-color:var(--green);}
+.col-behalf .col-heading{color:var(--blue);border-color:var(--blue);}
+.col-inkind .col-heading{color:var(--amber);border-color:var(--amber);}
+.col-item{padding:4px 0;border-bottom:1px dashed var(--cream);font-size:11px;}
+.col-item:last-child{border-bottom:none;}
+.col-item-name{font-weight:600;color:var(--ink);line-height:1.3;}
+.col-item-amount{font-weight:700;font-variant-numeric:tabular-nums;margin-top:1px;}
+.col-cash .col-item-amount{color:var(--green);}
+.col-behalf .col-item-amount{color:var(--blue);}
+.col-inkind .col-item-amount{color:var(--amber);}
+.col-item-note{font-size:10px;color:#999;line-height:1.3;font-style:italic;margin-top:1px;}
+.col-item-deduct .col-item-amount{color:var(--red);}
+
+/* CITATION */
+sup.cite{font-size:9px;color:var(--blue);cursor:pointer;margin-left:1px;}
+sup.cite a{color:var(--blue);text-decoration:none;}
+sup.cite a:hover{text-decoration:underline;}
+
+/* TOTAL ROW */
+.total-resource{background:var(--green-faint);border:1px solid var(--green-light);padding:9px 12px;display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;}
+.total-resource-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);}
+.total-resource-sub{font-size:10px;color:#888;font-style:italic;margin-top:1px;}
+.total-resource-amount{font-family:'Libre Baskerville',serif;font-size:19px;font-weight:700;color:var(--green);}
+
+/* INSIGHT */
+.insight{background:var(--amber-light);border-left:3px solid var(--amber);padding:8px 11px;font-size:12px;color:var(--amber);line-height:1.5;}
+.insight strong{font-weight:700;}
+
+/* CHART */
+.chart-controls{display:flex;align-items:center;gap:10px;margin:10px 0;flex-wrap:wrap;}
+.chart-label-txt{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);}
+.chart-wrap{background:white;border:1px solid var(--cream);padding:12px 8px 8px;overflow:hidden;}
+#incomeChart{display:block;width:100%;}
+.chart-legend{display:flex;flex-wrap:wrap;gap:5px 14px;margin-top:10px;font-size:11px;}
+.legend-item{display:flex;align-items:center;gap:5px;}
+.legend-swatch{width:18px;height:11px;border-radius:1px;flex-shrink:0;}
+.chart-note{font-size:10px;color:#999;font-style:italic;margin-top:8px;line-height:1.5;}
+
+/* DIVIDER */
+hr.divider{border:none;border-top:2px solid var(--rule);margin:32px 0;}
+
+/* BENEFIT CARDS */
+.filter-bar{background:var(--green);padding:10px 16px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 -16px;position:sticky;top:0;z-index:50;}
+.filter-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,240,232,.55);margin-right:4px;}
+.chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:var(--paper);padding:3px 10px;border-radius:2px;font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap;letter-spacing:.02em;}
+.chip:hover{background:rgba(255,255,255,.18);}
+.chip.active{background:var(--paper);color:var(--green);border-color:var(--paper);}
+.search-wrap{margin:14px 0 6px;}
+.search-input{width:100%;border:1px solid var(--rule);border-bottom:2px solid var(--green);background:white;padding:8px 12px;font-family:'Source Sans 3',sans-serif;font-size:13px;color:var(--ink);outline:none;}
+.search-input::placeholder{color:#bbb;font-style:italic;}
+.counts{font-size:11px;color:#999;font-style:italic;margin-bottom:8px;}
+.cat-section{margin-top:24px;}
+.cat-header{display:flex;align-items:baseline;gap:10px;padding-bottom:7px;border-bottom:2px solid var(--rule);margin-bottom:12px;}
+.cat-header h3{font-family:'Libre Baskerville',serif;font-size:16px;font-weight:700;color:var(--green);}
+.cat-header p{font-size:11px;color:#666;font-style:italic;flex:1;}
+.cat-count{font-size:10px;font-weight:700;color:var(--rule);letter-spacing:.08em;white-space:nowrap;}
+.cards-grid{display:grid;grid-template-columns:1fr;gap:8px;}
+@media(min-width:580px){.cards-grid{grid-template-columns:1fr 1fr;}}
+.bcard{background:white;border:1px solid var(--cream);border-top:3px solid var(--rule);padding:12px 14px;}
+.bcard.t-universal{border-top-color:var(--blue);}
+.bcard.t-means{border-top-color:var(--red);}
+.bcard.t-contributory{border-top-color:var(--amber);}
+.bcard.t-disability{border-top-color:var(--green-mid);}
+.bcard.t-pension{border-top-color:var(--purple);}
+.bcard-top{display:flex;justify-content:space-between;align-items:flex-start;gap:6px;margin-bottom:5px;}
+.bcard h4{font-family:'Libre Baskerville',serif;font-size:13px;font-weight:700;line-height:1.25;flex:1;}
+.badge{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 5px;border-radius:1px;white-space:nowrap;flex-shrink:0;}
+.badge-universal{background:var(--blue-light);color:var(--blue);}
+.badge-means{background:var(--red-light);color:var(--red);}
+.badge-contributory{background:var(--amber-light);color:var(--amber);}
+.badge-disability{background:var(--green-faint);color:var(--green);}
+.badge-pension{background:var(--purple-light);color:var(--purple);}
+.bcard-desc{font-size:12px;color:#444;line-height:1.4;margin-bottom:8px;}
+.bcard-meta{display:grid;grid-template-columns:1fr 1fr;gap:3px 6px;border-top:1px dashed var(--cream);padding-top:7px;}
+.meta-item{display:flex;flex-direction:column;gap:1px;}
+.meta-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#aaa;}
+.meta-val{font-size:11px;font-weight:600;color:var(--ink);}
+.quirk-box{margin-top:7px;background:var(--amber-light);border-left:3px solid var(--amber);padding:5px 8px;font-size:11px;color:var(--amber);line-height:1.4;font-style:italic;}
+.quirk-box.q-red{background:var(--red-light);border-color:var(--red);color:var(--red);}
+.quirk-box.q-blue{background:var(--blue-light);border-color:var(--blue);color:var(--blue);}
+.quirk-box.q-green{background:var(--green-faint);border-color:var(--green-mid);color:var(--green);}
+.hidden{display:none!important;}
+.empty-state{text-align:center;padding:40px 20px;color:#999;font-style:italic;font-family:'Libre Baskerville',serif;}
+
+/* SOURCES */
+.sources-section{margin-top:32px;border-top:1px solid var(--rule);padding-top:16px;}
+.sources-section h3{font-family:'Libre Baskerville',serif;font-size:14px;font-weight:700;color:var(--green);margin-bottom:10px;}
+.source-list{list-style:none;font-size:11px;color:#666;line-height:1.7;}
+.source-list li{padding:2px 0;}
+.source-list li::before{content:attr(data-n)' ';font-weight:700;color:var(--green);}
+.source-list a{color:var(--blue);text-decoration:none;}
+.source-list a:hover{text-decoration:underline;}
+
+/* PILL */
+.pill{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:1px 5px;border-radius:1px;margin-left:3px;vertical-align:middle;position:relative;top:-1px;}
+.pill-means{background:var(--red-light);color:var(--red);}
+.pill-universal{background:var(--blue-light);color:var(--blue);}
+.pill-disability{background:var(--green-faint);color:var(--green);}
+.pill-contributory{background:var(--amber-light);color:var(--amber);}
+.pill-asylum{background:var(--purple-light);color:var(--purple);}
+</style>
+</head>
+<body>
+
+<header>
+<div class="header-inner">
+  <div class="form-ref">Public Information · UK Benefits System Guide · 2024–25 Rates</div>
+  <h1>What the State Pays<br><em>A plain guide to UK benefits</em></h1>
+  <p class="header-sub">"Benefits" is not one thing. It is dozens of separate programmes — universal, means-tested, contributory — each with different rules, different recipients, and different purposes. This guide maps the system as it actually is.</p>
+</div>
+</header>
+
+<div class="page">
+
+<!-- ── HOUSEHOLD EXPLORER ──────────────────── -->
+<div class="section-title">Household explorer</div>
+<p style="font-size:13px;color:#555;margin-bottom:4px;">Select a household type to see a full breakdown of entitlements — cash in hand, payments made on your behalf, and benefits in kind — then see how total income compares across the salary range.</p>
+
+<div class="selector-wrap">
+  <span class="selector-label">Select household type</span>
+  <select class="hh-select" id="hhSelect">
+    <option value="min-wage">💼 Full-time minimum wage worker — private renter, Midlands</option>
+    <option value="single-man">🧍 Single unemployed man — private renter, Midlands</option>
+    <option value="single-man-social">🧍🏠 Single unemployed man — council tenant, Midlands</option>
+    <option value="single-mother">👩‍👧‍👦 Single parent, 2 children — private renter, North West</option>
+    <option value="couple-3ch">👨‍👩‍👧‍👦 Couple with 3 children, one working part-time — private renter, South East</option>
+    <option value="disabled">🧑‍🦽 Disabled person, unable to work — social housing</option>
+    <option value="pensioner">👵 Pensioner on Pension Credit — homeowner</option>
+    <option value="carer">🤝 Unpaid carer — homeowner</option>
+    <option value="mortgage">🏡 Homeowner who lost their job — mortgage outstanding</option>
+    <option value="asylum">🛂 Asylum seeker — Home Office dispersal accommodation</option>
+  </select>
+</div>
+
+<div class="profile-panel" id="profilePanel"></div>
+
+<div class="section-title" style="margin-top:24px;">Income across the salary range — <span id="chartTitle" style="font-weight:400;font-style:italic;"></span></div>
+<p style="font-size:12px;color:#666;margin-bottom:10px;">Each bar shows total monthly income (earnings + benefits) at that salary for the selected household. Colours show the source. Ticks mark where each benefit tapers to zero.</p>
+<div class="chart-wrap"><canvas id="incomeChart"></canvas></div>
+<div class="chart-legend" id="chartLegend"></div>
+<p class="chart-note">UC housing element included at LHA rate for the area. Assumes single claimant or couple as indicated. Child Benefit HIBC taper applies £60k–£80k (1 child), higher for more. Free childcare lost above £100k per parent. UC tapers at 55p per £1 above work allowance. Rates: 2024–25.<sup class="cite"><a href="https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2024" target="_blank">[1]</a></sup></p>
+
+<hr class="divider">
+
+<!-- ── BENEFIT TAXONOMY ────────────────────── -->
+<div class="section-title">All benefits explained</div>
+
+<div class="filter-bar">
+  <span class="filter-label">Filter:</span>
+  <button class="chip active" data-f="all">All</button>
+  <button class="chip" data-f="universal">Universal</button>
+  <button class="chip" data-f="means-tested">Means-tested</button>
+  <button class="chip" data-f="contributory">Contributory (NI)</button>
+  <button class="chip" data-f="disability">Disability &amp; Carer</button>
+  <button class="chip" data-f="pension">Pension-age</button>
+  <button class="chip" data-f="sanctionable">Has sanctions</button>
+  <button class="chip" data-f="uc">UC migration</button>
+</div>
+
+<div class="search-wrap">
+  <input class="search-input" type="search" id="searchInput" placeholder="Search benefits by name or keyword…">
+</div>
+<div class="counts" id="counts"></div>
+<div id="taxonomyContainer"></div>
+
+<!-- ── SOURCES ────────────────────────────── -->
+<div class="sources-section">
+  <h3>Sources &amp; references</h3>
+  <ul class="source-list" id="sourcesList"></ul>
+</div>
+
+</div><!-- /page -->
+
+<script>
+// ── SOURCES ───────────────────────────────────────────────────
+const SOURCES = [
+  { n:1,  text:'DWP Benefit Expenditure and Caseload Tables 2024', url:'https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2024' },
+  { n:2,  text:'GOV.UK — Universal Credit: what you\'ll get', url:'https://www.gov.uk/universal-credit/what-youll-get' },
+  { n:3,  text:'GOV.UK — Child Benefit rates and eligibility', url:'https://www.gov.uk/child-benefit/what-youll-get' },
+  { n:4,  text:'GOV.UK — Personal Independence Payment (PIP)', url:'https://www.gov.uk/pip/what-youll-get' },
+  { n:5,  text:'GOV.UK — Pension Credit eligibility', url:'https://www.gov.uk/pension-credit/eligibility' },
+  { n:6,  text:'GOV.UK — Attendance Allowance', url:'https://www.gov.uk/attendance-allowance/what-youll-get' },
+  { n:7,  text:'GOV.UK — Carer\'s Allowance', url:'https://www.gov.uk/carers-allowance/what-youll-get' },
+  { n:8,  text:'GOV.UK — Support for Mortgage Interest', url:'https://www.gov.uk/support-for-mortgage-interest' },
+  { n:9,  text:'GOV.UK — Asylum support (Section 95)', url:'https://www.gov.uk/asylum-support/what-youll-get' },
+  { n:10, text:'GOV.UK — New Style JSA', url:'https://www.gov.uk/jobseekers-allowance/what-youll-get' },
+  { n:11, text:'GOV.UK — New Style ESA', url:'https://www.gov.uk/employment-support-allowance/what-youll-get' },
+  { n:12, text:'GOV.UK — State Pension: what you\'ll get', url:'https://www.gov.uk/new-state-pension/what-youll-get' },
+  { n:13, text:'GOV.UK — Local Housing Allowance rates', url:'https://www.gov.uk/government/publications/local-housing-allowance-lha-rates-applicable-from-april-2024-to-march-2025' },
+  { n:14, text:'DWP — Stat-Xplore (caseload statistics)', url:'https://stat-xplore.dwp.gov.uk/' },
+  { n:15, text:'GOV.UK — Free childcare for 3 and 4 year olds', url:'https://www.gov.uk/help-with-childcare-costs/free-childcare-and-education-for-2-to-4-year-olds' },
+  { n:16, text:'GOV.UK — High Income Child Benefit Tax Charge', url:'https://www.gov.uk/child-benefit-tax-charge' },
+  { n:17, text:'GOV.UK — Winter Fuel Payment', url:'https://www.gov.uk/winter-fuel-payment' },
+  { n:18, text:'HMRC — Income tax rates and allowances', url:'https://www.gov.uk/income-tax-rates' },
+  { n:19, text:'GOV.UK — Two-child limit: abolition April 2025', url:'https://www.gov.uk/guidance/universal-credit-and-families-with-more-than-2-children' },
+];
+
+function srcRef(n){ return `<sup class="cite"><a href="${SOURCES[n-1].url}" target="_blank">[${n}]</a></sup>`; }
+
+// Render sources list
+document.getElementById('sourcesList').innerHTML = SOURCES.map(s=>
+  `<li data-n="[${s.n}]"><a href="${s.url}" target="_blank">${s.text}</a></li>`
+).join('');
+
+// ── COLOURS ───────────────────────────────────────────────────
+const C = { earnings:'#2d5016', uc:'#4a90d9', cb:'#8e44ad', pip:'#27ae60', childcare:'#e67e22' };
+
+// ── HOUSEHOLD CONFIG (for chart) ──────────────────────────────
+const HH_CHART = {
+  'min-wage':       { nCh:0, u4:0, dis:false, lha:600  },
+  'single-man':     { nCh:0, u4:0, dis:false, lha:600  },
+  'single-man-social':{ nCh:0, u4:0, dis:false, lha:30 },
+  'single-mother':  { nCh:2, u4:1, dis:false, lha:680  },
+  'couple-3ch':     { nCh:3, u4:1, dis:false, lha:900  },
+  'disabled':       { nCh:0, u4:0, dis:true,  lha:30   },
+  'pensioner':      { nCh:0, u4:0, dis:false, lha:0    },
+  'carer':          { nCh:0, u4:0, dis:false, lha:0    },
+  'mortgage':       { nCh:0, u4:0, dis:false, lha:0    },
+  'asylum':         { nCh:0, u4:0, dis:false, lha:0    },
+};
+
+// ── TAX CALCULATIONS ──────────────────────────────────────────
+function calcTax(g){
+  const pa=12570,e=g>125140?0:g>100000?pa-(g-100000)/2:pa;
+  const tx=Math.max(0,g-e),b=Math.min(tx,Math.max(0,50270-e));
+  const h=Math.min(Math.max(0,tx-(50270-e)),75140),a=Math.max(0,tx-(125140-e));
+  return Math.max(0,b*.2+h*.4+a*.45);
+}
+function calcNI(g){ if(g<=12570)return 0; if(g<=50270)return(g-12570)*.08; return(50270-12570)*.08+(g-50270)*.02; }
+function netMo(g){ return(g-calcTax(g)-calcNI(g))/12; }
+function fmt(n){ return '\u00a3'+Math.round(Math.abs(n)).toLocaleString(); }
+
+function cbAfterHIBC(g,n){
+  if(!n)return 0;
+  const cb=(25.60+Math.max(0,n-1)*16.95)*52/12;
+  if(g<=60000)return cb;
+  return Math.max(0,cb-Math.min(cb,cb*(g-60000)/20000));
+}
+function ccSubsidy(g,u4){ return u4&&g<100000?(6500*u4)/12:0; }
+function ucCalc(g,nCh,dis,lha){
+  const pip=dis?596.19:0;
+  const maxUC=393.45+nCh*333.33+(dis?416.19:0)+lha;
+  const taper=Math.max(0,(g/12-404)*.55);
+  return Math.max(0,maxUC-taper)+pip;
+}
+
+// ── PROFILES DATA ─────────────────────────────────────────────
+const PROFILES = {
+'min-wage':{
+  icon:'💼',name:'The Full-Time Minimum Wage Worker',
+  desc:'25, single, no children, no health conditions. Private renter, Midlands. Working full-time at National Living Wage (£12.21/hr).',
+  narrative:'Earning the National Living Wage full-time produces approximately £1,997/mo net after tax and NI. UC is fully tapered out at this income for most of the country. This person builds NI contributions toward the State Pension and is auto-enrolled into a workplace pension.',
+  housingNote:null,
+  cash:[
+    {name:'Employment income (NLW, 37.5hrs)',type:'universal',monthly:1997,note:`£12.21/hr approx. net after tax and NI.${srcRef(18)}`},
+    {name:'UC — Standard Allowance',type:'means',monthly:0,note:`Fully tapered out at this income.${srcRef(2)}`},
+  ],
+  behalf:[
+    {name:'UC — Housing Element (residual)',type:'means',monthly:0,note:'Likely fully tapered. May remain in very high-rent areas.'},
+  ],
+  inkind:[
+    {name:'NHS prescriptions (not free at this income)',note:'Prescription charges apply — £9.90/item.',monthly:0},
+    {name:'Employer pension contribution (auto-enrolment)',note:'Minimum 3% of qualifying earnings from employer.',monthly:60},
+    {name:'NI contributions → State Pension',note:`Building qualifying years toward full State Pension.${srcRef(12)}`,monthly:0},
+  ],
+  cashTotal:1997,behalfTotal:0,inkindTotal:60,
+  insight:'A full-time minimum wage worker has had UC fully tapered away by earnings. The point at which UC tapers to zero for a single private renter with no children is approximately £35,000–40,000 gross in most regions.',
+},
+'single-man':{
+  icon:'🧍',name:'The Single Unemployed Man',
+  desc:'28, no children, no health conditions. Private renter, Midlands. Recently made redundant.',
+  narrative:'With insufficient NI contributions for New Style JSA, UC is his only income. The standard allowance is the only cash in his pocket — the housing element covers most of his rent.',
+  housingNote:null,
+  cash:[
+    {name:'UC — Standard Allowance (single, 25+)',type:'means',monthly:393.45,note:`Base payment. Sanctionable — work-search requirements apply.${srcRef(2)}`},
+  ],
+  behalf:[
+    {name:`UC — Housing Element (1-bed LHA, Midlands)${srcRef(13)}`,type:'means',monthly:520,note:'Paid to claimant to cover rent. Assumes 1-bed LHA rate, Midlands.'},
+  ],
+  inkind:[
+    {name:'Free NHS prescriptions',note:'Free while receiving UC.',monthly:20},
+    {name:'Free NHS dental treatment',note:'Free while receiving UC.',monthly:25},
+    {name:'Help with sight tests and glasses',note:'Free sight tests and vouchers while on UC.',monthly:5},
+  ],
+  cashTotal:393,behalfTotal:520,inkindTotal:50,
+  insight:'The standard UC allowance (£393/mo) is the most commonly cited figure in public debate. The housing element — larger at £520/mo — is rarely mentioned because it is not discretionary cash.',
+},
+'single-man-social':{
+  icon:'🧍🏠',name:'The Single Unemployed Man (social housing)',
+  desc:'28, no children, no health conditions. Council tenant, Midlands. Same circumstances — different tenure.',
+  narrative:'Identical circumstances to above, but housed by a local authority. The UC housing element is tiny because rent support flows through the tenancy rather than through UC. Average social rents in England are approximately 40–60% below equivalent private market rents.',
+  housingNote:'Social rent discount is funded through housing grant and landlord borrowing — it does not appear in DWP welfare statistics but represents a real resource transfer from the state.',
+  cash:[
+    {name:'UC — Standard Allowance (single, 25+)',type:'means',monthly:393.45,note:`Base payment. Sanctionable.${srcRef(2)}`},
+  ],
+  behalf:[
+    {name:'UC — Housing Element (social rent service charge)',type:'means',monthly:30,note:'Covers eligible service charges only. Full rent is set below-market by landlord.'},
+  ],
+  inkind:[
+    {name:'Social rent discount',note:'Average social rent ~£106/wk vs ~£180/wk private equivalent. Gap ~£74/wk. Funded via housing grant — not in DWP statistics.',monthly:320},
+    {name:'Free NHS prescriptions',note:'Free while receiving UC.',monthly:20},
+    {name:'Free NHS dental treatment',note:'Free while receiving UC.',monthly:25},
+  ],
+  cashTotal:393,behalfTotal:30,inkindTotal:365,
+  insight:'A social tenant receives far less UC cash than an equivalent private renter. The implicit social rent discount (~£320/mo) never appears in welfare statistics — yet it is a real state subsidy flowing through a different mechanism.',
+},
+'single-mother':{
+  icon:'👩‍👧‍👦',name:'The Single Parent',
+  desc:'34, two children (ages 4 and 7). Private renter, North West. Not working.',
+  narrative:'Child Benefit arrives as unconditional cash — not counted as UC income. The housing element covers most of a two-bedroom rent. Since April 2025 the two-child limit on UC child elements has been abolished.',
+  housingNote:null,
+  cash:[
+    {name:'UC — Standard Allowance (single, 25+)',type:'means',monthly:393.45,note:`Base payment.${srcRef(2)}`},
+    {name:`UC — Child Element ×2${srcRef(19)}`,type:'means',monthly:666.66,note:'£333.33 per child. Two-child limit abolished April 2025.'},
+    {name:`Child Benefit ×2${srcRef(3)}`,type:'universal',monthly:177.80,note:'£25.60 (eldest) + £16.95 (second). Universal — not means-tested, not counted as UC income.'},
+  ],
+  behalf:[
+    {name:'UC — Housing Element (2-bed LHA, NW)',type:'means',monthly:680,note:'Paid to claimant to cover rent. Assumes 2-bed LHA rate, North West.'},
+  ],
+  inkind:[
+    {name:'Free school meals (×2 school-age children)',note:`Eligible while on UC, earnings under £7,400/yr.${srcRef(15)} Worth ~£500/yr per child.`,monthly:83},
+    {name:'15 hours free childcare (age 3–4)',note:`Universal entitlement. UC childcare element covers further hours if she works.${srcRef(15)}`,monthly:181},
+    {name:'Healthy Start vouchers',note:'£4.25/wk for milk, fruit, veg and vitamins — children under 4 and pregnant women on UC.',monthly:18},
+    {name:'Free NHS dental, prescriptions, sight tests',note:'Free while on UC.',monthly:50},
+  ],
+  cashTotal:1238,behalfTotal:680,inkindTotal:332,
+  insight:'Child Benefit is unconditional cash — universal, no means test, paid regardless of UC entitlement. The housing element is larger than the standard allowance but is not discretionary cash.',
+},
+'couple-3ch':{
+  icon:'👨‍👩‍👧‍👦',name:'The Couple with Three Children',
+  desc:'Couple, three children (ages 2, 5, 9). One parent part-time (£800/mo net). Private renter, South East.',
+  narrative:'In work and on UC — the 55p taper reduces the award as earnings rise. Since April 2025 all three children attract UC child elements. Child Benefit has never had a child limit.',
+  housingNote:null,
+  cash:[
+    {name:'UC — Standard Allowance (couple)',type:'means',monthly:617.60,note:`Couple rate.${srcRef(2)}`},
+    {name:`UC — Child Element ×3${srcRef(19)}`,type:'means',monthly:999.99,note:'£333.33 per child. Two-child limit abolished April 2025.'},
+    {name:`Child Benefit ×3${srcRef(3)}`,type:'universal',monthly:211.60,note:'£25.60 + £16.95 + £16.95/wk. Has never had a child limit.'},
+    {name:'UC earnings taper deduction',type:'means',monthly:-280,note:'55p withdrawn per £1 earned over work allowance (~£515/mo).'},
+  ],
+  behalf:[
+    {name:'UC — Housing Element (3-bed LHA, SE)',type:'means',monthly:900,note:'Paid to claimant to cover rent. 3-bed LHA rate, South East.'},
+  ],
+  inkind:[
+    {name:'Free school meals (×2 school-age children)',note:'Eligible while earnings below £7,400/yr net.',monthly:83},
+    {name:'15 hours free childcare (youngest, age 2)',note:'Universal for 3–4 year olds. 30 hours if both parents working 16+ hrs.',monthly:181},
+    {name:'Free NHS dental and prescriptions',note:'Free while on UC.',monthly:50},
+  ],
+  cashTotal:1549,behalfTotal:900,inkindTotal:314,
+  insight:'UC tapers smoothly — earning more always increases total income. But marginal effective tax rates for earners in this band can exceed 60% when taper, income tax, and NI are combined.',
+},
+'disabled':{
+  icon:'🧑‍🦽',name:'The Disabled Person',
+  desc:'41, serious long-term health condition, unable to work. Social housing tenant, single.',
+  narrative:'PIP and UC are entirely separate systems. PIP is not means-tested, not counted as UC income, and available regardless of employment or savings. LCWRA removes work-search requirements and sanctions.',
+  housingNote:'In social housing — UC housing element covers service charges only. Rent is set at below-market rate through the tenancy, funded separately from DWP.',
+  cash:[
+    {name:'UC — Standard Allowance (single, 25+)',type:'means',monthly:393.45,note:`Base payment. Not sanctionable once LCWRA awarded.${srcRef(2)}`},
+    {name:'UC — LCWRA Element',type:'means',monthly:416.19,note:'Limited Capability for Work & Work-Related Activity. Awarded after Work Capability Assessment.'},
+    {name:`PIP — Daily Living (enhanced)${srcRef(4)}`,type:'disability',monthly:471.72,note:'£108.55/wk. Not means-tested. Entirely separate from UC.'},
+    {name:`PIP — Mobility (standard)${srcRef(4)}`,type:'disability',monthly:124.47,note:'£28.70/wk.'},
+  ],
+  behalf:[
+    {name:'UC — Housing Element (social rent)',type:'means',monthly:30,note:'Service charge element only.'},
+  ],
+  inkind:[
+    {name:'Social rent discount',note:'Gap between social and market rent (~£74/wk). Funded by housing grant — not in DWP statistics.',monthly:320},
+    {name:'Motability scheme',note:'PIP mobility component can be exchanged for a car, scooter or powered wheelchair.',monthly:0},
+    {name:'Blue Badge',note:'Eligible for free/discounted parking on basis of PIP mobility component.',monthly:30},
+    {name:'Free NHS prescriptions, dental and sight tests',note:'Free on UC and qualifying disability.',monthly:50},
+    {name:'Council Tax Reduction',note:'May receive full or partial reduction via local authority scheme.',monthly:100},
+  ],
+  cashTotal:1406,behalfTotal:30,inkindTotal:500,
+  insight:'PIP adds over £470/mo before any UC is considered. Both must be claimed and assessed independently through separate DWP processes. PIP is also available to disabled people who are in work.',
+},
+'pensioner':{
+  icon:'👵',name:'The Pensioner on Pension Credit',
+  desc:'74, widowed. Owns home outright. State Pension of £120/wk (partial, NI gaps). Mobility difficulties.',
+  narrative:'Pension Credit tops up income to the guaranteed minimum (£218.15/wk). Receiving Pension Credit unlocks a cluster of further entitlements. An estimated 880,000 eligible households do not claim it.',
+  housingNote:null,
+  cash:[
+    {name:`State Pension (partial)${srcRef(12)}`,type:'contributory',monthly:520,note:'£120/wk. Below full rate due to NI record gaps.'},
+    {name:`Pension Credit — Guarantee top-up${srcRef(5)}`,type:'means',monthly:425.80,note:'Tops income to £218.15/wk guaranteed minimum. Cash payment.'},
+    {name:`Attendance Allowance (higher rate)${srcRef(6)}`,type:'disability',monthly:471.72,note:'£108.55/wk. Not means-tested. Not counted as Pension Credit income.'},
+    {name:`Winter Fuel Payment${srcRef(17)}`,type:'means',monthly:20.83,note:'~£250/yr. Since 2024 restricted to Pension Credit recipients.'},
+  ],
+  behalf:[],
+  inkind:[
+    {name:'Free TV licence (over-75, Pension Credit)',note:'Worth £174.50/yr. Only free for over-75s who receive Pension Credit.',monthly:15},
+    {name:'Free NHS dental treatment',note:'Free while on Pension Credit.',monthly:25},
+    {name:'Free NHS prescriptions',note:'Free for everyone aged 60 and over.',monthly:20},
+    {name:'Free NHS sight tests',note:'Free over-60. Vouchers toward glasses if on Pension Credit.',monthly:10},
+    {name:'Cold Weather Payments',note:'£25 per 7-day freeze. Automatic for Pension Credit recipients.',monthly:8},
+    {name:'Free bus pass',note:'Free off-peak local bus travel from State Pension age. Worth £400–600+/yr for regular users.',monthly:42},
+    {name:'Council Tax Reduction',note:'Likely entitled to reduction via local authority scheme.',monthly:80},
+  ],
+  cashTotal:1438,behalfTotal:0,inkindTotal:200,
+  insight:`Pension Credit acts as a gateway: it unlocks Winter Fuel Payment, free TV licence, Cold Weather Payments, and free dental care. An estimated 880,000 eligible households do not claim it — losing all these entitlements too.${srcRef(5)}`,
+},
+'carer':{
+  icon:'🤝',name:'The Unpaid Carer',
+  desc:'52, provides full-time unpaid care for a disabled partner. Not working. Owns home outright.',
+  narrative:"Carer's Allowance is counted as unearned income by UC and deducted pound-for-pound — so in practice it adds nothing to cash in hand. The UC Carer Element is the real supplement.",
+  housingNote:null,
+  cash:[
+    {name:'UC — Standard Allowance (single, 25+)',type:'means',monthly:393.45,note:`Base payment.${srcRef(2)}`},
+    {name:'UC — Carer Element',type:'means',monthly:198.31,note:`For 35+ hrs/wk care to someone on PIP enhanced daily living.${srcRef(2)}`},
+    {name:`Carer's Allowance${srcRef(7)}`,type:'contributory',monthly:355.56,note:"£81.90/wk — counted as income by UC. Net household addition: £0."},
+    {name:"UC deduction (Carer's Allowance as income)",type:'means',monthly:-355.56,note:'Deducted pound-for-pound as unearned income.'},
+  ],
+  behalf:[],
+  inkind:[
+    {name:'Free NHS prescriptions and dental',note:'Free while on UC.',monthly:45},
+    {name:"Carer's Assessment (council)",note:"Right to assessment under Care Act 2014 — may unlock respite care or other support.",monthly:0},
+  ],
+  cashTotal:591,behalfTotal:0,inkindTotal:45,
+  insight:"Carer's Allowance is deducted from UC in full — for most UC claimants it adds zero net cash income. The UC Carer Element (£198/mo) is what actually supplements the standard allowance.",
+},
+'mortgage':{
+  icon:'🏡',name:'The Mortgage Owner Who Lost Their Job',
+  desc:'42, single, recently made redundant. Owns home with £180,000 mortgage. No children, no disability.',
+  narrative:'SMI is paid directly to the lender — it never passes through the claimant\'s hands. It covers interest only, not capital. The claimant\'s cash in hand is the standard UC allowance only.',
+  housingNote:`SMI is a government loan — it accrues interest and must be repaid from equity when the property is sold. It is not a grant.${srcRef(8)}`,
+  cash:[
+    {name:'UC — Standard Allowance (single, 25+)',type:'means',monthly:393.45,note:`Base payment. Sanctionable.${srcRef(2)}`},
+  ],
+  behalf:[
+    {name:`Support for Mortgage Interest (SMI)${srcRef(8)}`,type:'means',monthly:549,note:'3.66% of £180,000 ÷ 12 = £549/mo. Loan paid direct to lender. Available after 3-month UC qualifying period.'},
+  ],
+  inkind:[
+    {name:'SMI accrues compound interest',note:'SMI is repayable — it reduces future equity on sale.',monthly:0},
+    {name:'Free NHS prescriptions and dental',note:'Free while on UC.',monthly:45},
+  ],
+  cashTotal:393,behalfTotal:549,inkindTotal:45,
+  insight:'SMI adds no cash to the household. It prevents mortgage default by paying interest to the lender as a loan. The loan accrues interest and reduces equity available on sale.',
+},
+'asylum':{
+  icon:'🛂',name:'The Asylum Seeker',
+  desc:'Single adult, claim pending. Home Office dispersal accommodation, outside London. Cannot work.',
+  narrative:'Asylum seekers are not eligible for mainstream benefits — no UC, no Housing Benefit, no Child Benefit. Support is provided under Section 95 of the Immigration and Asylum Act 1999, administered by the Home Office.',
+  housingNote:'Accommodation is provided on a no-choice basis by private contractors under the Home Office dispersal policy. In full-board accommodation (meals provided), the weekly cash allowance drops to £8.86.',
+  cash:[
+    {name:`Section 95 cash allowance (ASPEN card)${srcRef(9)}`,type:'asylum',monthly:213.11,note:'£49.18/wk. For food, clothing, toiletries, travel, communications. Full-board rate: £8.86/wk.'},
+  ],
+  behalf:[],
+  inkind:[
+    {name:'Dispersal accommodation',note:'Room in contracted shared housing, no-choice. Estimated market cost: £400–800/mo.',monthly:500},
+    {name:'NHS primary and secondary care',note:'Full NHS access. Prescriptions free. Dental and optical via HC2 certificate.',monthly:80},
+    {name:'State education for dependent children',note:'Same entitlement to state schooling as all other children.',monthly:0},
+    {name:'No right to work',note:'Cannot supplement income through employment during pending claim.',monthly:0},
+  ],
+  cashTotal:213,behalfTotal:0,inkindTotal:580,
+  insight:'The £49.18/wk cash allowance is the only disposable income. Accommodation and NHS care are non-cash. Once granted leave to remain, Section 95 support ends after 56 days, at which point the person may work and claim mainstream benefits.',
+},
+};
+
+// ── RENDER PROFILE ────────────────────────────────────────────
+function pill(type){
+  const m={means:'pill-means',universal:'pill-universal',disability:'pill-disability',contributory:'pill-contributory',asylum:'pill-asylum'};
+  const labels={means:'Means-tested',universal:'Universal',disability:'Disability',contributory:'Contributory',asylum:'Asylum support'};
+  return `<span class="pill ${m[type]||'pill-means'}">${labels[type]||type}</span>`;
+}
+
+function fmtM(v){
+  if(v===0)return '—';
+  return (v<0?'−':'')+'\u00a3'+Math.abs(Math.round(v)).toLocaleString()+'/mo';
+}
+
+function colItem(item, col){
+  const isDeduct=(item.monthly||0)<0;
+  let amount;
+  if(item.monthly!=null){
+    amount=item.monthly===0?'—':fmtM(item.monthly);
+  } else {
+    amount=item.monthlyValue>0?'~\u00a3'+Math.round(item.monthlyValue).toLocaleString()+'/mo est.':'In kind';
+  }
+  return `<div class="col-item${isDeduct?' col-item-deduct':''}">
+    <div class="col-item-name">${item.name}${item.type?pill(item.type):''}</div>
+    <div class="col-item-amount">${amount}</div>
+    ${item.note?`<div class="col-item-note">${item.note}</div>`:''}
+  </div>`;
+}
+
+function renderProfile(id){
+  const p=PROFILES[id];
+  if(!p){return;}
+  const grandTotal=p.cashTotal+p.behalfTotal+p.inkindTotal;
+  const behalfStr=p.behalfTotal>0?'~\u00a3'+Math.round(p.behalfTotal).toLocaleString()+'/mo':'—';
+  const inkindStr=p.inkindTotal>0?'~\u00a3'+Math.round(p.inkindTotal).toLocaleString()+'/mo est.':'—';
+  document.getElementById('profilePanel').innerHTML=`
+    <div class="profile-header">
+      <div class="profile-icon">${p.icon}</div>
+      <div>
+        <div class="profile-name">${p.name}</div>
+        <div class="profile-desc">${p.desc}</div>
+      </div>
+    </div>
+    ${p.housingNote?`<div class="housing-note">🏠 ${p.housingNote}</div>`:''}
+    <p class="profile-narrative">${p.narrative}</p>
+    <div class="three-col">
+      <div class="col-panel col-cash">
+        <div class="col-heading">Cash in hand<span class="col-total">${fmtM(p.cashTotal)}</span></div>
+        ${p.cash.map(i=>colItem(i,'cash')).join('')}
+      </div>
+      <div class="col-panel col-behalf">
+        <div class="col-heading">Paid on your behalf<span class="col-total">${behalfStr}</span></div>
+        ${p.behalf.length?p.behalf.map(i=>colItem(i,'behalf')).join(''):'<div class="col-item"><div class="col-item-note">None for this household</div></div>'}
+      </div>
+      <div class="col-panel col-inkind">
+        <div class="col-heading">In kind &amp; implicit<span class="col-total">${inkindStr}</span></div>
+        ${p.inkind.map(i=>colItem(i,'inkind')).join('')}
+      </div>
+    </div>
+    <div class="total-resource">
+      <div>
+        <div class="total-resource-label">Total resource value</div>
+        <div class="total-resource-sub">Cash + paid on behalf${p.inkindTotal>0?' + in-kind estimates':''}</div>
+      </div>
+      <div class="total-resource-amount">~\u00a3${Math.round(grandTotal).toLocaleString()}/mo</div>
+    </div>
+    <div class="insight"><strong>Key insight:</strong> ${p.insight}</div>
+  `;
+  document.getElementById('chartTitle').textContent=p.name.replace('The ','').toLowerCase();
+}
+
+// ── BAR CHART ─────────────────────────────────────────────────
+const BAR_BANDS=[0,10000,15000,20000,25000,30000,35000,40000,50000,60000,80000,100000,125000,150000];
+
+function drawChart(hhId){
+  const canvas=document.getElementById('incomeChart');
+  if(!canvas)return;
+  const h=HH_CHART[hhId]||HH_CHART['single-man'];
+  const {nCh,dis,u4,lha}=h;
+  const dpr=window.devicePixelRatio||1;
+  const W=Math.max(300,canvas.parentElement.clientWidth-2);
+  const barH=20,gap=4;
+  const PAD={top:8,right:14,bottom:30,left:86};
+  const rows=BAR_BANDS.length;
+  const H=PAD.top+rows*(barH+gap)+PAD.bottom;
+  canvas.width=W*dpr;canvas.height=H*dpr;
+  canvas.style.width=W+'px';canvas.style.height=H+'px';
+  const ctx=canvas.getContext('2d');
+  ctx.scale(dpr,dpr);
+  ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);
+  const maxVal=16000;
+  const cW=W-PAD.left-PAD.right;
+  const xp=v=>PAD.left+Math.min(1,v/maxVal)*cW;
+
+  [0,2000,4000,6000,8000,10000,12000,14000,16000].forEach(v=>{
+    const x=xp(v);
+    ctx.strokeStyle='#ece6d8';ctx.lineWidth=1;ctx.setLineDash([]);
+    ctx.beginPath();ctx.moveTo(x,PAD.top);ctx.lineTo(x,H-PAD.bottom);ctx.stroke();
+    ctx.fillStyle='#bbb';ctx.font="9px 'Source Sans 3',sans-serif";ctx.textAlign='center';
+    ctx.fillText(v===0?'\u00a30':'\u00a3'+(v/1000)+'k',x,H-PAD.bottom+12);
+  });
+
+  const tots=BAR_BANDS.map(g=>{
+    const net=netMo(g);
+    const uc=Math.max(0,393.45+nCh*333.33+(dis?416.19:0)+lha-Math.max(0,(g/12-404)*.55));
+    const pip=dis?596.19:0;
+    const cb=cbAfterHIBC(g,nCh);
+    const cc=ccSubsidy(g,u4);
+    return{net,uc,pip,cb,cc,total:net+uc+pip+cb+cc};
+  });
+
+  const ucEndIdx=tots.findIndex((t,i)=>i>0&&t.uc===0&&tots[i-1].uc>0);
+  const cbEndIdx=nCh>0?tots.findIndex((t,i)=>i>0&&t.cb===0&&tots[i-1].cb>0):-1;
+  const ccEndIdx=u4>0?tots.findIndex((t,i)=>i>0&&t.cc===0&&tots[i-1].cc>0):-1;
+
+  BAR_BANDS.forEach((gross,i)=>{
+    const{net,uc,pip,cb,cc,total}=tots[i];
+    const y=PAD.top+i*(barH+gap);
+    ctx.fillStyle='#f0ece0';ctx.fillRect(PAD.left,y,cW,barH);
+    let x=PAD.left;
+    [{v:net,c:C.earnings},{v:uc,c:C.uc},{v:pip,c:C.pip},{v:cb,c:C.cb},{v:cc,c:C.childcare}].forEach(s=>{
+      if(s.v<=0)return;
+      const sw=(s.v/maxVal)*cW;
+      ctx.fillStyle=s.c;ctx.fillRect(x,y,sw,barH);x+=sw;
+    });
+    if(i===ucEndIdx||i===cbEndIdx||i===ccEndIdx){
+      const prev=tots[i-1]?.total||total;
+      const bx=Math.min(xp(prev),W-PAD.right-2);
+      const annots=[];
+      if(i===ucEndIdx)annots.push({c:C.uc,t:'UC ends'});
+      if(i===cbEndIdx)annots.push({c:C.cb,t:'CB ends'});
+      if(i===ccEndIdx)annots.push({c:C.childcare,t:'Childcare ends'});
+      annots.forEach((a,ai)=>{
+        ctx.strokeStyle=a.c;ctx.lineWidth=2;ctx.setLineDash([]);
+        ctx.beginPath();ctx.moveTo(bx,y-1);ctx.lineTo(bx,y+barH+1);ctx.stroke();
+        ctx.fillStyle=a.c;ctx.font="bold 8px 'Source Sans 3',sans-serif";ctx.textAlign='left';
+        ctx.fillText(a.t,bx+3+ai*58,y+barH-3);
+      });
+    }
+    ctx.setLineDash([]);
+    ctx.fillStyle=gross===0?'#999':'#555';
+    ctx.font=gross===0?"italic 10px 'Source Sans 3',sans-serif":"10px 'Source Sans 3',sans-serif";
+    ctx.textAlign='right';
+    ctx.fillText(gross===0?'No earnings':'\u00a3'+(gross/1000)+'k/yr',PAD.left-4,y+barH*.68);
+    ctx.font="bold 10px 'Source Sans 3',sans-serif";
+    const lstr=fmt(total)+'/mo';
+    const lw=ctx.measureText(lstr).width;
+    const tp=xp(total);
+    if(tp-PAD.left>lw+10){ctx.fillStyle='rgba(255,255,255,.9)';ctx.textAlign='right';ctx.fillText(lstr,tp-3,y+barH*.68);}
+    else{ctx.fillStyle='#333';ctx.textAlign='left';ctx.fillText(lstr,tp+3,y+barH*.68);}
+  });
+
+  const leg=document.getElementById('chartLegend');
+  const items=[[C.earnings,'Net take-home from earnings'],[C.uc,'Universal Credit (incl. housing element)']];
+  if(dis)items.push([C.pip,'PIP — not means-tested, not tapered']);
+  if(nCh>0)items.push([C.cb,'Child Benefit']);
+  if(u4>0)items.push([C.childcare,'Free childcare subsidy (est.)']);
+  if(leg)leg.innerHTML=items.map(([c,l])=>`<div class="legend-item"><div class="legend-swatch" style="background:${c}"></div><span>${l}</span></div>`).join('');
+}
+
+// ── WIRING ────────────────────────────────────────────────────
+function updateAll(){
+  const id=document.getElementById('hhSelect').value;
+  renderProfile(id);
+  drawChart(id);
+}
+document.getElementById('hhSelect').addEventListener('change',updateAll);
+window.addEventListener('resize',()=>drawChart(document.getElementById('hhSelect').value));
+if(document.readyState==='complete'){requestAnimationFrame(updateAll);}
+else{window.addEventListener('load',()=>requestAnimationFrame(updateAll));}
+
+// ── BENEFIT TAXONOMY ──────────────────────────────────────────
+const BENEFITS=[
+  {id:'child-benefit',name:'Child Benefit',cat:'Family & Children',type:'universal',sanctionable:false,uc:false,
+   rate:'£25.60/wk (eldest child), £16.95/wk (additional)',recipients:'~7.7 million families',src:3,
+   elig:'Anyone responsible for a child under 16 (or under 20 in approved education/training). No means test.',
+   quirk:`Universal — but a High Income Child Benefit Charge claws it back via self-assessment for earners over £60,000. Fully withdrawn by ~£80,000 for one child.${srcRef(16)}`,quirkC:'q-blue'},
+  {id:'free-school-meals',name:'Free School Meals',cat:'Family & Children',type:'means-tested',sanctionable:false,uc:false,
+   rate:'In kind (school meal provided)',recipients:'~2 million pupils (England)',src:15,
+   elig:'Children in state schools whose parents receive UC with net earnings under £7,400/yr, or certain other qualifying benefits.',
+   quirk:'Universal Infant Free School Meals gives all Reception–Year 2 children free meals regardless of income. Often confused with means-tested FSM.',quirkC:'q-blue'},
+  {id:'uc-standard',name:'UC — Standard Allowance',cat:'Universal Credit',type:'means-tested',sanctionable:true,uc:true,
+   rate:'£393.45/mo (single 25+); £309.13/mo (single under 25); £617.60/mo (couple)',recipients:'~6.6 million households',src:2,
+   elig:'Working-age adults on low income or out of work. Income and savings tapered. Savings over £16,000 bar entitlement.',
+   quirk:'The standard allowance is just the base. The actual amount varies enormously depending on which elements are added — for children, disability, housing, or a carer.',quirkC:'q-red'},
+  {id:'uc-child',name:'UC — Child Element',cat:'Universal Credit',type:'means-tested',sanctionable:false,uc:true,
+   rate:'£333.33/mo per child',recipients:'Part of ~1.9m UC households with children',src:19,
+   elig:'Added for each dependent child. The two-child limit — which restricted payments to the first two children — was abolished in April 2025.',
+   quirk:`Child Benefit (universal, no limit) and the UC child element (means-tested) are separate systems. The two-child limit's abolition in April 2025 restored ~£333/mo for affected families.${srcRef(19)}`,quirkC:'q-blue'},
+  {id:'uc-lcwra',name:'UC — LCWRA Element',cat:'Universal Credit',type:'means-tested',sanctionable:false,uc:true,
+   rate:'£416.19/mo added to standard allowance',recipients:'~1.3 million UC claimants',src:2,
+   elig:'Awarded after a Work Capability Assessment finds the person cannot work and cannot be required to prepare for work.',
+   quirk:'Not sanctionable. Removing the financial reward for this status is a significant factor in the growth of health-related UC claims — over 3 million people now claim on health grounds.',quirkC:'q-red'},
+  {id:'uc-housing',name:'UC — Housing Cost Element',cat:'Universal Credit',type:'means-tested',sanctionable:false,uc:true,
+   rate:'Varies by Local Housing Allowance area and property size',recipients:'~2.3 million UC households',src:13,
+   elig:`Private renters receive up to LHA rate for their area and bedroom entitlement. Social renters get service charge element only.${srcRef(13)}`,
+   quirk:'LHA rates were frozen 2020–2024, meaning real-terms cuts as rents rose. Partially restored in 2024 — but in high-cost areas the gap between LHA and actual rents can be hundreds of pounds per month.',quirkC:'q-red'},
+  {id:'uc-carer',name:'UC — Carer Element',cat:'Universal Credit',type:'means-tested',sanctionable:false,uc:true,
+   rate:'£198.31/mo added to award',recipients:'~420,000 UC claimants',src:2,
+   elig:"Added where a claimant provides 35+ hours/week of unpaid care to a severely disabled person receiving PIP daily living, DLA care, or Attendance Allowance.",
+   quirk:"Carer's Allowance (a separate contributory-style benefit) is counted as income and deducted from UC pound-for-pound — so receiving both produces zero net addition for most UC claimants.",quirkC:''},
+  {id:'pension-credit',name:'Pension Credit',cat:'Pension-age Benefits',type:'means-tested',sanctionable:false,uc:false,
+   rate:'Tops up to £218.15/wk (single) or £332.95/wk (couple)',recipients:'~1.4 million households — est. 880,000 eligible but not claiming',src:5,
+   elig:'Pensioners (State Pension age+) with income below the guarantee threshold. No upper savings limit, but savings above £10,000 treated as income.',
+   quirk:`Pension Credit is the gateway to Winter Fuel Payment (since 2024), free TV licence (over-75s), Cold Weather Payment, and free dental care. Non-take-up is one of the largest hidden poverty problems in the UK.${srcRef(5)}`,quirkC:'q-red'},
+  {id:'housing-benefit',name:'Housing Benefit',cat:'Legacy Benefits',type:'means-tested',sanctionable:false,uc:true,
+   rate:'As UC Housing element — same LHA rules apply',recipients:'~1.5 million (declining; pension-age claims remain)',src:13,
+   elig:'Now only open to pension-age claimants or certain exempt groups. Working-age claimants directed to UC.',
+   quirk:'Legacy Housing Benefit has largely been absorbed into UC for working-age claimants. Pensioners remain on it and will not move to UC.',quirkC:'q-blue'},
+  {id:'pip',name:'Personal Independence Payment (PIP)',cat:'Disability & Carer Benefits',type:'disability',sanctionable:false,uc:false,
+   rate:'Daily living: £72.65/wk (standard) or £108.55/wk (enhanced). Mobility: £28.70/wk (standard) or £75.75/wk (enhanced)',recipients:'~3.2 million people',src:4,
+   elig:'Working-age adults with a long-term health condition or disability affecting daily living and/or mobility. Not means-tested. Can be received in or out of work.',
+   quirk:'Not means-tested and not a substitute for income — intended to cover the extra costs of disability. Many people do not know they can receive PIP alongside UC, employment, or other income.',quirkC:'q-green'},
+  {id:'dla',name:'Disability Living Allowance (DLA — Children)',cat:'Disability & Carer Benefits',type:'disability',sanctionable:false,uc:false,
+   rate:'Care: £28.70–£108.55/wk. Mobility: £28.70–£75.75/wk',recipients:'~1.2 million children',src:14,
+   elig:'Children under 16 with a disability or health condition requiring substantially more care or supervision than a child of the same age.',
+   quirk:'Adults with DLA are being migrated to PIP. Children remain on DLA until 16, when they are reassessed for PIP — a transition that is often distressing for families.',quirkC:''},
+  {id:'aa',name:'Attendance Allowance',cat:'Disability & Carer Benefits',type:'disability',sanctionable:false,uc:false,
+   rate:'£72.65/wk (lower) or £108.55/wk (higher)',recipients:'~1.7 million people',src:6,
+   elig:'People over State Pension age who need help with personal care due to disability or illness. No mobility component. Not means-tested.',
+   quirk:'Often overlooked by older people who assume it is only for the severely disabled. Take-up is low relative to eligibility. Can act as a gateway to Pension Credit top-ups.',quirkC:'q-green'},
+  {id:'carers-allowance',name:"Carer's Allowance",cat:'Disability & Carer Benefits',type:'contributory',sanctionable:false,uc:false,
+   rate:'£81.90/wk',recipients:'~1.0 million people',src:7,
+   elig:'Providing 35+ hours/week of care to someone receiving PIP daily living, DLA care (middle or highest rate), or Attendance Allowance. Earnings must be below £151/wk net.',
+   quirk:"One of the lowest benefit rates in the system — and it is taxable. For UC claimants it is deducted in full as unearned income, adding zero net cash. The earnings limit has caused inadvertent overpayments as wages rise.",quirkC:'q-red'},
+  {id:'new-state-pension',name:'New State Pension',cat:'Pension-age Benefits',type:'contributory',sanctionable:false,uc:false,
+   rate:'Up to £221.20/wk (full rate, 2024–25)',recipients:'~12.9 million pensioners',src:12,
+   elig:'Reached State Pension age (currently 66) with at least 10 qualifying NI years. Full pension requires 35 qualifying years.',
+   quirk:"The 'triple lock' guarantees the State Pension rises by the highest of inflation (CPI), earnings growth, or 2.5% each year.",quirkC:'q-blue'},
+  {id:'new-style-jsa',name:'New Style JSA',cat:'Contributory Benefits',type:'contributory',sanctionable:true,uc:false,
+   rate:'£84.80/wk (25+); £67.20/wk (18–24)',recipients:'~100,000 people',src:10,
+   elig:'Unemployed, available for and actively seeking work, with sufficient NI contributions in the two prior tax years. Paid for up to 182 days.',
+   quirk:'Time-limited to 6 months. After that, claimants must move to UC. Also sanctionable. Can be received at the same time as UC, but is counted as income.',quirkC:'q-blue'},
+  {id:'new-style-esa',name:'New Style ESA',cat:'Contributory Benefits',type:'contributory',sanctionable:false,uc:false,
+   rate:'Assessment phase: £84.80/wk. Work-related activity: £84.80/wk. Support group: £129.50/wk',recipients:'~200,000 people',src:11,
+   elig:'Unable to work due to illness or disability, with sufficient NI contributions. Claimants undergo a Work Capability Assessment.',
+   quirk:'NI-based — a disabled person without a sufficient NI record cannot access New Style ESA and must rely on UC LCWRA element instead.',quirkC:'q-blue'},
+  {id:'winter-fuel',name:'Winter Fuel Payment',cat:'Pension-age Benefits',type:'means-tested',sanctionable:false,uc:false,
+   rate:'£200–£300 per household depending on age',recipients:'~1.5 million (post-2024 restriction)',src:17,
+   elig:`From winter 2024, restricted to pensioners receiving Pension Credit or certain means-tested benefits. Previously universal for all over-66s.${srcRef(17)}`,
+   quirk:'Until 2024 this was universal — every pensioner received it. Restriction to Pension Credit recipients cut entitlement for around 10 million households. Makes Pension Credit take-up more urgent than ever.',quirkC:'q-red'},
+];
+
+const CATS={
+  'Universal Credit':'The main working-age safety net. One payment combining several elements — but the amount varies enormously by household.',
+  'Family & Children':'Payments and entitlements related to having children. Some universal; others means-tested.',
+  'Disability & Carer Benefits':'For people with long-term illness, disability, or those providing substantial unpaid care. Mostly not means-tested.',
+  'Contributory Benefits':'Based on your National Insurance record. Entitlement earned through past contributions.',
+  'Pension-age Benefits':'Payments and entitlements for people at State Pension age (currently 66).',
+  'Legacy Benefits':'Older means-tested benefits being replaced by Universal Credit. Mostly closed to new claimants.',
+};
+const CAT_ORDER=Object.keys(CATS);
+
+function badgeHTML(type){
+  const m={universal:'badge-universal Universal','means-tested':'badge-means Means-tested',contributory:'badge-contributory Contributory',disability:'badge-disability Disability'};
+  const cls=m[type]||'badge-means Means-tested';
+  const[c,l]=cls.split(' ');
+  return`<span class="badge ${c}">${l}</span>`;
+}
+
+let activeFilter='all',searchTerm='';
+
+function renderTaxonomy(){
+  const c=document.getElementById('taxonomyContainer');
+  let total=0;
+  c.innerHTML=CAT_ORDER.map(cat=>{
+    const items=BENEFITS.filter(b=>b.cat===cat&&matchF(b)&&matchS(b));
+    if(!items.length)return'';
+    total+=items.length;
+    return`<div class="cat-section">
+      <div class="cat-header">
+        <h3>${cat}</h3>
+        <p>${CATS[cat]||''}</p>
+        <span class="cat-count">${items.length} benefit${items.length>1?'s':''}</span>
+      </div>
+      <div class="cards-grid">${items.map(b=>`
+        <div class="bcard t-${b.type.replace('-tested','')}">
+          <div class="bcard-top"><h4>${b.name}${srcRef(b.src)}</h4>${badgeHTML(b.type)}</div>
+          <p class="bcard-desc">${b.elig}</p>
+          <div class="bcard-meta">
+            <div class="meta-item"><span class="meta-lbl">Rate</span><span class="meta-val">${b.rate}</span></div>
+            <div class="meta-item"><span class="meta-lbl">Recipients</span><span class="meta-val">${b.recipients}${srcRef(14)}</span></div>
+            ${b.sanctionable?`<div class="meta-item" style="grid-column:1/-1"><span class="meta-lbl">Conditionality</span><span class="meta-val" style="color:var(--red)">⚠ Sanctionable — requirements must be met or payment may be reduced</span></div>`:''}
+          </div>
+          ${b.quirk?`<div class="quirk-box ${b.quirkC}">🔍 ${b.quirk}</div>`:''}
+        </div>`).join('')}</div>
+    </div>`;
+  }).join('');
+  const cnt=document.getElementById('counts');
+  cnt.textContent=activeFilter!=='all'||searchTerm?`Showing ${total} of ${BENEFITS.length} benefits`:`${BENEFITS.length} benefits across ${CAT_ORDER.length} categories`;
+  document.querySelector('.empty-state')||c.insertAdjacentHTML('beforeend','<div class="empty-state" id="emptyState"></div>');
+  const es=document.getElementById('emptyState');
+  if(es)es.textContent=total===0?'No benefits match your current filters.':'';
+}
+
+function matchF(b){
+  if(activeFilter==='all')return true;
+  if(activeFilter==='sanctionable')return b.sanctionable;
+  if(activeFilter==='uc')return b.uc;
+  return b.type===activeFilter||b.cat.toLowerCase().includes(activeFilter.toLowerCase());
+}
+function matchS(b){
+  if(!searchTerm)return true;
+  const q=searchTerm.toLowerCase();
+  return b.name.toLowerCase().includes(q)||b.elig.toLowerCase().includes(q)||(b.quirk||'').toLowerCase().includes(q)||b.cat.toLowerCase().includes(q);
+}
+
+document.querySelectorAll('.chip').forEach(ch=>{
+  ch.addEventListener('click',()=>{
+    document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
+    ch.classList.add('active');
+    activeFilter=ch.dataset.f;
+    renderTaxonomy();
+  });
+});
+document.getElementById('searchInput').addEventListener('input',e=>{
+  searchTerm=e.target.value.trim();
+  renderTaxonomy();
+});
+renderTaxonomy();
+</script>
+</body>
+</html>
